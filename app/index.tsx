@@ -31,11 +31,10 @@ export default function Index() {
       ]}
     >
       <StatusBar style="auto" />
-      <View style={{  paddingBottom: 12}} >
-
-      <Header />
-      <DateSelector />
-      <FilterTabs selected={activeFilter} onSelect={setActiveFilter} />
+      <View style={{ paddingBottom: 12 }}>
+        <Header />
+        <DateSelector />
+        <FilterTabs selected={activeFilter} onSelect={setActiveFilter} />
       </View>
 
       <FlatList
