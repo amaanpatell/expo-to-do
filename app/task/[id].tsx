@@ -46,15 +46,19 @@ export default function TaskDetail() {
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+        <TouchableOpacity style={styles.iconButton} onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={24} color={Colors.textPrimary} />
         </TouchableOpacity>
+
         <Text style={styles.headerTitle}>Task Detail</Text>
-        <View style={styles.backButton} />
+        <TouchableOpacity style={styles.iconButton}>
+        <Ionicons name="notifications-outline" size={24} color={Colors.textPrimary} />
+      </TouchableOpacity>
+        
       </View>
 
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Icon + Category */}
+       
         <View style={styles.topRow}>
           <View style={[styles.iconBadge, { backgroundColor: task.icon.backgroundColor }]}>
             <Ionicons name={task.icon.name as any} size={28} color="#fff" />
@@ -62,7 +66,7 @@ export default function TaskDetail() {
           <Text style={styles.category}>{task.category}</Text>
         </View>
 
-        {/* Title */}
+      
         <Text style={styles.title}>{task.title}</Text>
 
         {/* Status pill */}
@@ -81,8 +85,7 @@ export default function TaskDetail() {
           <InfoRow icon="time-outline" label="Time" value={task.time} />
           <View style={styles.infoSeparator} />
           <InfoRow icon="folder-outline" label="Project" value={task.category} />
-          <View style={styles.infoSeparator} />
-          <InfoRow icon="flag-outline" label="Priority" value="Medium" />
+          
         </View>
 
         {/* Description placeholder */}
@@ -94,27 +97,6 @@ export default function TaskDetail() {
           </Text>
         </View>
 
-        {/* Subtasks placeholder */}
-        <Text style={styles.sectionTitle}>Subtasks</Text>
-        <View style={styles.infoCard}>
-          {["Research & gather references", "Create initial draft", "Review and iterate"].map(
-            (sub, i) => (
-              <React.Fragment key={i}>
-                {i > 0 && <View style={styles.infoSeparator} />}
-                <View style={styles.subtaskRow}>
-                  <View style={[styles.checkbox, i === 0 && styles.checkboxDone]}>
-                    {i === 0 && (
-                      <Ionicons name="checkmark" size={12} color="#fff" />
-                    )}
-                  </View>
-                  <Text style={[styles.subtaskText, i === 0 && styles.subtaskDone]}>
-                    {sub}
-                  </Text>
-                </View>
-              </React.Fragment>
-            )
-          )}
-        </View>
       </ScrollView>
     </View>
   );
@@ -146,13 +128,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
   },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
+   flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 20,
-    paddingVertical: 12,
+    paddingTop: 8,
+    paddingBottom: 12,
   },
-  backButton: {
+  iconButton: {
     width: 40,
     height: 40,
     borderRadius: 12,
@@ -161,7 +144,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   headerTitle: {
-    fontSize: 17,
+    fontSize: 20,
     fontWeight: "700",
     color: Colors.textPrimary,
   },
